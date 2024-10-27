@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+    <title>엘보우 블로그 Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+    <div class="jumbotron">
+        <h1>엘보우 블로그</h1>
+        <p class="lead">회원 기능</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/users/new">회원 가입</a>
+            <a class="btn btn-lg btn-secondary" href="/users/login">로그인</a>
+        </p>
+        <p class="lead">블로그 기능</p>
+        <p>
+            <a class="btn btn-lg btn-dark" th:href="@{/posts/{userId}(userId = ${user.id})}">내 블로그 가기</a>
+            <a class="btn btn-lg btn-dark" href="/items">다른 사람 블로그 찾기</a>
+        </p>
+        <p class="lead">관리자 기능</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="/order">상품 주문</a>
+            <a class="btn btn-lg btn-info" href="/order/orders">주문 내역</a>
+        </p>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div> <!-- /container -->
+</body>
+</html>

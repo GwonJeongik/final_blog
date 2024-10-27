@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+    <title>게시물 생성 - 엘보우 블로그</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+    <h1>게시물 생성</h1>
+
+    <!-- Form for creating a new post -->
+    <form th:action th:object="${postRequestDto}" method="post">
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" th:field="*{title}" class="form-control"
+                   placeholder="제목을 입력하세요"/>
+            <div th:if="${#fields.hasErrors('title')}" class="text-danger">
+                <p th:each="err : ${#fields.errors('title')}" th:text="${err}">Error</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content">내용</label>
+            <textarea id="content" th:field="*{content}" class="form-control"
+                      placeholder="내용을 입력하세요"></textarea>
+            <div th:if="${#fields.hasErrors('content')}" class="text-danger">
+                <p th:each="err : ${#fields.errors('content')}" th:text="${err}">Error</p>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">게시물 생성</button>
+        <a th:href="@{/}" class="btn btn-secondary">취소</a>
+    </form>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div> <!-- /container -->
+</body>
+</html>
